@@ -28,19 +28,10 @@ soma
 subtracao
 )
 
-#add_custom_target(
-#  TARGET ${TARGET_NAME}_1 POST_BUILD
-#  COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_BINARY_DIR}/src/biblioteca.so ${PROJECT_SOURCE_DIR}/
-#)
-
 add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TARGET_NAME}> ${targetfile}
-)
+                   COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TARGET_NAME}> ${PROJECT_SOURCE_DIR}/../tests/)
 
 add_executable(teste main.c)
 target_link_libraries(teste
-divisao
-produto
-soma
-subtracao
+${TARGET_NAME}
 )
