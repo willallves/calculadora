@@ -1,22 +1,32 @@
-#!/usr/bin/env python
-
+from unittest import TestCase
 from ctypes import *
 
-def check_so(soname):
+
+path_so = './output-files/libs-so/libcalculadora.so'
+
+
+def check_so(so_lib):
     try:
-        lib = CDLL(soname)
-        print("INFO: Found so as", lib)
-        print("O retorno do produto: ", lib.soma(3, 2))
-        return True
+        lib = CDLL(so_lib)
+        return lib
     except OSError as ex:
         print("WARNING:", ex)
-        return False
+        return None
 
+class TestCalculadora(TestCase):
 
-if __name__ == "__main__":
-    
-    j = check_so("./libsoma.so")
-    if not j:
-        print("Error: Could not test")
-    else:
-        print("Success: J %s  \n" % j)
+    def setUp(self):
+        super(TestCalculadora, self).setUp()
+        self.lib = check_so(path_so)
+
+    def testSoma(self):
+        self.assertEqual(self.lib.soma(3, 3), 6)
+
+    def testDivisao(self):
+        self.assertEqual(self.lib.divisao(3, 3), 1)
+
+    def testSubtracao(self):
+        self.assertEqual(self.lib.subtracao(3, 3), 0)
+
+    def testProduto(self):
+        self.assertEqual(self.lib.produto(3, 3), 9)
