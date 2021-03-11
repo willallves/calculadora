@@ -4,32 +4,16 @@
 #include "source.h"
 
 
-int main(int argc, char* argv[]){
-	int argv1, argv2;
-	
-	if (argc < 3) {
-		printf("Vc passou : %d argumento\n", argc);
-		printf("Vc precisa passar no minimo 3 argumentos\n");
-		return 1;
-	}
+void calculadora() {
+	printf("\nsoma %d\n", soma(1, 1));
+	printf("subtracao %d\n", subtracao(1, 1));
+	printf("multiplicacao %d\n", produto(1, 1));
+	printf("dividida %d\n", divisao(1, 1));
+}
 
-	if (argc > 3)
-	{
-		printf("Vc passou muitos parametros!\n");
-		printf("Vc precisa passar no maximo 3 argumentos\n");
-		return 1;
-	}
+int main(int argc, char* argv[]) {
 
-	printf("primeiro argumento: %s\n", argv[1]);
-	printf("segundo argumento: %s\n", argv[2]);
-
-	argv1 = atoi(argv[1]);
-	argv2 = atoi(argv[2]);
-
-	printf("A soma de argv[1] e argv[2]: %d\n", soma(argv1, argv2));
-	printf("A subtração de argv[1] e argv[2]: %d\n", subtracao(argv1, argv2));
-	printf("A multiplicação de argv[1] e argv[2]: %d\n", produto(argv1, argv2));
-	printf("A divisão de argv[1] e argv[2]: %d\n", divisao(argv1, argv2));
+	calculadora();
 
 	return 0;
 }

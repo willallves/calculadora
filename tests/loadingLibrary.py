@@ -30,3 +30,6 @@ class TestCalculadora(TestCase):
 
     def testProduto(self):
         self.assertEqual(self.lib.produto(3, 3), 9)
+
+    def testCalculadora(self):
+        self.lib.calculadora()

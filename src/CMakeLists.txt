@@ -13,14 +13,7 @@ foreach(module ${modules})
   add_subdirectory(${module})
 endforeach()
 
-set(SOURCES
-  divisao/divisao.c
-  produto/produto.c
-  soma/soma.c
-  subtracao/subtracao.c
-)
-      
-add_library(${TARGET_NAME} SHARED ${SOURCES})
+add_library(${TARGET_NAME} SHARED main.c)
 target_link_libraries(${TARGET_NAME}
 divisao
 produto
@@ -30,11 +23,3 @@ subtracao
 
 add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TARGET_NAME}> ${PROJECT_SOURCE_DIR}/../output-files/libs-so/)
-
-add_executable(${TARGET_NAME}-bin main.c)
-target_link_libraries(${TARGET_NAME}-bin
-${TARGET_NAME}
-)
-
-add_custom_command(TARGET ${TARGET_NAME}-bin POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TARGET_NAME}-bin> ${PROJECT_SOURCE_DIR}/../output-files/bin/)
