@@ -14,3 +14,8 @@ set(SOURCES
 )
       
 add_library(${TARGET_NAME} SHARED ${SOURCES})
+
+install(
+    TARGETS              "${TARGET_NAME}"
+    LIBRARY DESTINATION  "${CMAKE_INSTALL_LIBDIR}"
+)

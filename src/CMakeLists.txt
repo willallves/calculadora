@@ -24,32 +24,17 @@ subtracao
 add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TARGET_NAME}> ${PROJECT_SOURCE_DIR}/../output-files/libs-so/)
 
-# Generated headers folder
-set(GENERATED_HEADERS_DIR
-  "${CMAKE_CURRENT_BINARY_DIR}/generated_headers"
-)
-
 # Introduce variables:
 #   - CMAKE_INSTALL_LIBDIR
 #   - CMAKE_INSTALL_BINDIR
 #   - CMAKE_INSTALL_INCLUDEDIR
 include(GNUInstallDirs)
 
-# Configuration
-set(GENERATED_DIR       "${CMAKE_CURRENT_BINARY_DIR}/generated")
-
-
-# Targets:
 install(
     TARGETS              "${TARGET_NAME}"
-    EXPORT               "${TARGETS_EXPORT_NAME}"
     LIBRARY DESTINATION  "${CMAKE_INSTALL_LIBDIR}"
-    ARCHIVE DESTINATION  "${CMAKE_INSTALL_LIBDIR}"
-    RUNTIME DESTINATION  "${CMAKE_INSTALL_BINDIR}"
-    INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
 )
 
-# Headers:
 install(
     FILES ${HEADERS_PUBLIC}
     DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${LIBRARY_FOLDER}"
